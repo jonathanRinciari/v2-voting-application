@@ -9,3 +9,26 @@ Setup **
 **change github remote by using git remote set-url origin url
 
 **add .gitignore & .env to that ignore
+
+
+Voting Application ToDo List
+
+-Home page route
+    -for not logged in users
+        -See a note about signing up
+        -list of polls from all users
+        -click on polls
+        -read about polls
+        -view all polls 
+        -login instead of being able to vote
+    -for users logged in
+        -navbar says
+            -create new poll
+            -view my polls
+-create new poll
+    -can only be logged in
+    -title of poll
+    -description of poll
+    -options comma seperated
+    -submit button
+-view my polls
