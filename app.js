@@ -17,7 +17,7 @@ const app = express();
 
 //set up session
 app.use(session({
-	secret: 'secretClementine',
+	secret: 'the world is strange',
 	resave: false,
 	saveUninitialized: true
 }));
