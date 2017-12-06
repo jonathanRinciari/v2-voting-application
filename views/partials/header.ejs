@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Voting Application</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/login.css" />
+    <link rel="stylesheet" href="/stylesheets/navbar.css" />
+  </head>
+  <body>
+  
+  <header>
+    <nav>
+      <div class="navbarContainer">
+        <% if(!currentUserName) { %>
+        <ul class="navbar">
+          <li><a href="/">Home</a></li>
+          <li><a href="/auth/login">Login</a></li>
+        </ul>
+         <% } else { %>
+         <ul class="navbar-logout">
+           <li><a href="/auth/logout">Logout</a></li>
+         </ul>
+         <% } %>
+      </div>  
+    </nav>
+  </header>

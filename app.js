@@ -48,6 +48,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function(req, res, next){
+  res.locals.currentUserName = req.user;
+  next();
+})
+
 app.use('/', index);
 app.use('/auth', authRoutes)
 
@@ -57,6 +62,7 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
 
 // error handler
 app.use(function(err, req, res, next) {
