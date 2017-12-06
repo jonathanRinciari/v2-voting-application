@@ -3,9 +3,16 @@
 
 <div class="indexContainer">
   <h1><%= title %></h1>
+  <% if(!currentUserName) { %>
   <div class="signinNotification">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique hic totam corrupti vero, aperiam optio ut, dolores libero esse, eligendi magni. A totam perferendis distinctio quasi, officiis harum, ipsam fugit?</p>
-  </div>    
+    <p>This is a list of hosted Polls so check them out!</p>
+    <p>If you want to vote or create your own poll login!</p>
+  </div>
+  <% } else { %>
+  <div class="signinNotification">
+    <p>Welcome Back <%= currentUserName.username %>!</p>
+  </div>
+  <% } %>
   <div class="indexAllPolls">
     <h2>All Polls</h2>
     <ul>

@@ -9,7 +9,8 @@ const express = require('express'),
     mongoose = require('mongoose'),
     session = require('express-session'),
     authRoutes = require('./routes/auth-routes'),
-    passportSetup = require('./config/passport-setup');
+    passportSetup = require('./config/passport-setup'),
+    poll = require('./routes/poll');
 
 require('dotenv').config();
 
@@ -55,6 +56,7 @@ app.use(function(req, res, next){
 
 app.use('/', index);
 app.use('/auth', authRoutes)
+app.use('/poll', poll);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
