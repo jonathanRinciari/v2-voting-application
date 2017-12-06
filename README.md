@@ -6,4 +6,6 @@ Setup **
 
 ** Update Models if needed
 
+**change github remote by using git remote set-url origin url
 
+**add .gitignore & .env to that ignore
