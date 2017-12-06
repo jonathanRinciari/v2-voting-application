@@ -5,5 +5,75 @@ body, html {
   overflow: hidden;
 }
 
+.indexContainer h1 {
+  font-size: 65px;
+}
 
+.indexContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: teal;
+}
 
+.signinNotification {
+  background-color: lightgray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30%;
+  width: 100%;
+  font-size: 20px;
+}
+
+.signinNotification p {
+  max-width: 800px;
+  margin: 10px;
+}
+
+.indexAllPolls {
+  text-align: center;
+  width: 100%;
+  background-color: pink;
+  height: 70%;
+}
+
+.indexAllPolls ul {
+  padding: 0;
+}
+
+.indexAllPolls h2 {
+  font-size: 32px;
+}
+
+.indexAllPolls li {
+  height: 50px;
+  background-color: gray;
+  margin-top: 5px;
+  margin-left: 10%;
+  margin-right: 10%;
+  list-style: none;
+}
+
+.indexAllPolls li:nth-child(odd){
+  background-color: lightblue;
+}
+
+.indexAllPolls li:hover:nth-child(odd) {
+  background-color: white;
+}
+
+.indexAllPolls li:hover {
+  background-color: orange;
+}
+
+.indexAllPolls a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
