@@ -1,0 +1,47 @@
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script>
+  <script
+      src="https://code.jquery.com/jquery-3.2.1.js"
+      integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+      crossorigin="anonymous">
+  </script>
+  
+
+
+<script>
+$(document).ready(function(){
+   var appUrl = '/api/' + window.location.pathname.split('/')[2]
+   console.log(appUrl)
+  $.getJSON(appUrl, function(data){
+      
+    var pollData = {
+        labels: [],
+        datasets: [{
+            label: 'Votes',
+            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+            data: []
+        }]
+    }
+    
+    for(keys in data.options){
+        pollData.labels.push(keys)
+        pollData.datasets[0].data.push(data.options[keys])
+    }
+    
+    new Chart(document.getElementById("myChart"), {
+    type: 'pie',
+    data: pollData,
+    options: {
+      title: {
+        display: true
+        // text: 'Predicted world population (millions) in 2050'
+      }
+    }
+});
+  })
+})
+
+</script>
+
+
+  </body>
+</html>
