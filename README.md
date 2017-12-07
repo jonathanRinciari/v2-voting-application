@@ -32,3 +32,4 @@ Voting Application ToDo List
     -options comma seperated
     -submit button
 -view my polls
+-add middleware to make sure user is logged in for a bunch of routes

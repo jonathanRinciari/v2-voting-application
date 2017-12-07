@@ -35,7 +35,10 @@ router.post('/create', function(req, res){
 })
 
 router.get('/:id', function(req, res){
-    res.send(req.params.id)
+    Poll.findById(req.params.id, function(err, foundPoll){
+        if(err) throw err;
+        res.render('poll', {foundPoll: foundPoll})
+    })
 })
 
 module.exports = router;

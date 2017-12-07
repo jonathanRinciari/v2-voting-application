@@ -1,0 +1,28 @@
+.pollContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background-color: pink;
+}
+
+.pollContainer h1 {
+    text-align: center;
+}
+
+.pollGrid {
+    height: 100%;
+    display: flex;
+}
+
+.voteGrid {
+    background-color: orange;
+    width: 40%;
+    height: 100%;
+}
+
+.graphGrid {
+    background-color: blue;
+    width: 60%;
+    height: 100%;
+}

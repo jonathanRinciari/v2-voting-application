@@ -2,7 +2,6 @@ body, html {
   margin: 0;
   height: 100%;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  overflow: hidden;
 }
 
 .indexContainer h1 {
