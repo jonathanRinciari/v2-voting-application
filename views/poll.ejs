@@ -3,7 +3,17 @@
     <h1>Poll Name</h1>
     <div class="pollGrid">
       <div class="voteGrid">
-
+        <h3>Vote Now!</h3>
+        <div id="voteOptions">
+          <form method="POST" action="/poll/<%=foundPoll._id%>">
+            <select name="vote">
+              <option name="tests">Test</option>
+              <option name="teseting">Testing</option>
+              <option name="tester">Tester</option>
+            </select>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
       </div>
       <div class="graphGrid">
         <canvas id="myChart" height="50px" width='60px'></canvas>

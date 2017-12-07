@@ -41,4 +41,9 @@ router.get('/:id', function(req, res){
     })
 })
 
+router.post('/:id', function(req, res){
+    console.log(req.body)
+    res.redirect('/poll/'+ req.params.id)
+})
+
 module.exports = router;
