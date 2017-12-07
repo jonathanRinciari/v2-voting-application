@@ -3,10 +3,14 @@ const Poll = require('../models/polls')
 
 router.get('/create', function(req, res){
     res.render('newPoll')
+    Poll.find({}, function(err, polls){
+        if(err) throw err;
+        console.log(polls)
+    })
 })
 
 router.post('/create', function(req, res){
-    var author = req.user.id
+    var author = req.user.username
     var title = req.body.title
     var options = req.body.options.split(',')
     var optionObj = {};
@@ -28,6 +32,10 @@ router.post('/create', function(req, res){
             res.send(newlyCreated)
         }
     })
+})
+
+router.get('/:id', function(req, res){
+    res.send(req.params.id)
 })
 
 module.exports = router;

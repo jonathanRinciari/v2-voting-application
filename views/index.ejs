@@ -2,7 +2,7 @@
 
 
 <div class="indexContainer">
-  <h1><%= title %></h1>
+  <h1><%=title%></h1>
   <% if(!currentUserName) { %>
   <div class="signinNotification">
     <p>This is a list of hosted Polls so check them out!</p>
@@ -16,9 +16,9 @@
   <div class="indexAllPolls">
     <h2>All Polls</h2>
     <ul>
-      <li><a href="#">Banana</a></li>
-      <li><a href="#">Banana</a></li>
-      <li><a href="#">Banana</a></li>
+      <% polls.forEach((poll) => { %>
+        <li><a href="/poll/<%=poll._id%>"><%=poll.title%></a></li>
+     <% }) %>
     </ul>
   </div>
 </div>
