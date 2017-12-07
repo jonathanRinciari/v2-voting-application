@@ -4,7 +4,10 @@ const Schema = mongoose.Schema;
 const pollSchema = new Schema({
     author: String,
     title: String,
-    options: {},
+    options: [{
+        name: String,
+        votes: 0
+    }],
     voters: []
 });
 

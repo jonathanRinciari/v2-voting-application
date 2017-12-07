@@ -13,15 +13,20 @@ router.post('/create', function(req, res){
     var author = req.user.username
     var title = req.body.title
     var options = req.body.options.split(',')
-    var optionObj = {};
+    var optionObj = [];
     for(var i = 0; i < options.length; i++){
-        optionObj[options[i]] = 0;
+        var obj = {}
+         optionObj.push(obj[options[i]] = 0)
     }
     
+    // var optionObj = {};
+    // for(var i = 0; i < options.length; i++){
+    //     optionObj[options[i]] = 0;
+    // }
     var newPoll = ({
         author: author,
         title: title,
-        options: optionObj,
+        options: [optionObj],
         voters: []
     })
     
@@ -42,8 +47,17 @@ router.get('/:id', function(req, res){
 })
 
 router.post('/:id', function(req, res){
+    var vote = req.body.vote;
+
     console.log(req.body)
-    res.redirect('/poll/'+ req.params.id)
+    Poll.findByIdAndUpdate({"_id": req.params.id, "options": req.body.vote, {$inc:{"options[":1}}, function(err, poll){
+        if(err) throw err
+        console.log(req.body.vote)
+         var votes = poll.options[req.body.vote];
+         votes += 1;
+         
+    })
+    
 })
 
 module.exports = router;
