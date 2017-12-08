@@ -13,12 +13,14 @@ router.post('/create', function(req, res){
     var author = req.user.username
     var title = req.body.title
     var options = req.body.options.split(',')
-    var optionObj = [];
+    var optionObj = {};
+    var optionsArr = [];
     for(var i = 0; i < options.length; i++){
-        var obj = {}
-         optionObj.push(obj[options[i]] = 0)
+        // optionObj[options[i]] = {votes: 0, name: options[i]
+        optionsArr.push({title: options[i]})
     }
     
+ 
     // var optionObj = {};
     // for(var i = 0; i < options.length; i++){
     //     optionObj[options[i]] = 0;
@@ -26,18 +28,16 @@ router.post('/create', function(req, res){
     var newPoll = ({
         author: author,
         title: title,
-        options: [optionObj],
+        options: optionsArr,
         voters: []
     })
     
     Poll.create(newPoll, function(err, newlyCreated){
         if(err) throw err;
-        else {
-            console.log(newlyCreated)
-            res.send(newlyCreated)
-        }
+        res.redirect('/')
     })
 })
+
 
 router.get('/:id', function(req, res){
     Poll.findById(req.params.id, function(err, foundPoll){
@@ -46,18 +46,18 @@ router.get('/:id', function(req, res){
     })
 })
 
-router.post('/:id', function(req, res){
-    var vote = req.body.vote;
+// router.post('/:id', function(req, res){
+//     var vote = req.body.vote;
 
-    console.log(req.body)
-    Poll.findByIdAndUpdate({"_id": req.params.id, "options": req.body.vote, {$inc:{"options[":1}}, function(err, poll){
-        if(err) throw err
-        console.log(req.body.vote)
-         var votes = poll.options[req.body.vote];
-         votes += 1;
+//     console.log(req.body)
+//     Poll.findByIdAndUpdate({"_id": req.params.id, "options": req.body.vote, {$inc:{"options[":1}}, function(err, poll){
+//         if(err) throw err
+//         console.log(req.body.vote)
+//          var votes = poll.options[req.body.vote];
+//          votes += 1;
          
-    })
+//     })
     
-})
+// })
 
 module.exports = router;

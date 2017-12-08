@@ -5,8 +5,8 @@ const pollSchema = new Schema({
     author: String,
     title: String,
     options: [{
-        name: String,
-        votes: 0
+        title: {type: String},
+        vote: {type: Number, default: 0}
     }],
     voters: []
 });

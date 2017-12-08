@@ -21,9 +21,10 @@ $(document).ready(function(){
         }]
     }
     
-    for(keys in data.options){
-        pollData.labels.push(keys)
-        pollData.datasets[0].data.push(data.options[keys])
+    
+    for(var i = 0; i < data.options.length; i++){
+      pollData.labels.push(data.options[i].title);
+      pollData.datasets[0].data.push(data.options[i].vote)
     }
     
     new Chart(document.getElementById("myChart"), {
