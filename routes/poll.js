@@ -13,7 +13,6 @@ router.post('/create', function(req, res){
     var author = req.user.username
     var title = req.body.title
     var options = req.body.options.split(',')
-    var optionObj = {};
     var optionsArr = [];
     for(var i = 0; i < options.length; i++){
         // optionObj[options[i]] = {votes: 0, name: options[i]
@@ -32,9 +31,13 @@ router.post('/create', function(req, res){
         voters: []
     })
     
+    
+    
     Poll.create(newPoll, function(err, newlyCreated){
         if(err) throw err;
-        res.redirect('/')
+        
+        // 
+        res.redirect(`/${newlyCreated._id}`)
     })
 })
 
@@ -46,18 +49,27 @@ router.get('/:id', function(req, res){
     })
 })
 
-// router.post('/:id', function(req, res){
-//     var vote = req.body.vote;
-
-//     console.log(req.body)
-//     Poll.findByIdAndUpdate({"_id": req.params.id, "options": req.body.vote, {$inc:{"options[":1}}, function(err, poll){
-//         if(err) throw err
-//         console.log(req.body.vote)
-//          var votes = poll.options[req.body.vote];
-//          votes += 1;
-         
-//     })
+router.post('/:id', function(req, res){
+    var id = req.params.id;
+    var userVote = req.body.vote
+    var user = req.user.username
+    Poll.findById(id, function(err, data){
+        if(err) throw err;
+        submitAnswer(userVote, res, id, user)
+        
+    })
     
-// })
+})
+
+function submitAnswer(field, res, id, user){
+  //  $push: {'voters': user}},
+    Poll.findOneAndUpdate(
+    { options: {$elemMatch: {title: field}}},
+    { $inc: { 'options.$.vote': 1}, $push: {'voters': user}},
+    function(err, poll){
+        if(err) throw err;
+        res.redirect(`/poll/${id}`)
+    })
+}
 
 module.exports = router;
