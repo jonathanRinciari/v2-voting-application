@@ -5,11 +5,11 @@
       <div class="voteGrid">
         <h3>Vote Now!</h3>
         <div id="voteOptions">
-          <form method="POST" action="/poll/<%=foundPoll._id%>?_method=PUT">
+          <form>
             <select name="vote">
-              <option name="Yes">Yes</option>
-              <option name="teseting">Testing</option>
-              <option name="tester">Tester</option>
+              <% foundPoll.forEach((poll) => { %>
+              <option name=<%=poll.title%>><%=poll.title%></option>
+              <% }) %>
             </select>
             <button type="submit">Submit</button>
           </form>
@@ -28,14 +28,16 @@
 
 <script>
 var appUrl = '/poll/' + window.location.pathname.split('/')[2]
-  $('button').click(function(){
+  $('#answer').click(function(){
+    var customVote = $("input").val()
     if($(this).attr('id') === 'answer'){
       $.ajax({
         type: 'POST',
         url: appUrl,
-        data: {vote: 'Test'},
+        data: {vote: customVote},
         success: function(result){
-          if(result){
+          console.log(result)
+          if(result.updated){
             location.reload();
           } else {
             alert(result.message)
@@ -43,6 +45,25 @@ var appUrl = '/poll/' + window.location.pathname.split('/')[2]
         }
       })
     }
+  })
+  
+  $("form").submit(function(e){
+    e.preventDefault();
+    var myVote = $("select").val()
+    $.ajax({
+      type: 'PUT',
+      url: appUrl,
+      data: {vote: myVote},
+      success: function(result){
+        if(result.updated){
+          $("input").val('')
+          location.reload();
+        } else {
+          console.log(result.message)
+          alert(result.message)
+        }
+      }
+    })
   })
   
   
