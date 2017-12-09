@@ -11,12 +11,14 @@ const express = require('express'),
     authRoutes = require('./routes/auth-routes'),
     passportSetup = require('./config/passport-setup'),
     poll = require('./routes/poll'),
-    api = require('./routes/api');
+    api = require('./routes/api'),
+    methodOverride = require('method-override');
 
 require('dotenv').config();
 
 const app = express();
 
+app.use(methodOverride('_method'))
 //set up session
 app.use(session({
 	secret: 'the world is strange',

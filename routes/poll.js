@@ -49,26 +49,38 @@ router.get('/:id', function(req, res){
     })
 })
 
-router.post('/:id', function(req, res){
+router.put('/:id', function(req, res){
     var id = req.params.id;
     var userVote = req.body.vote
     var user = req.user.username
     Poll.findById(id, function(err, data){
         if(err) throw err;
         submitAnswer(userVote, res, id, user)
-        
     })
     
 })
 
+router.post('/:id', function(req, res){
+var id = req.params.id
+var customVote = req.body.vote
+var user = req.user.username
+    Poll.findByIdAndUpdate(id, { $push: {options: {title: customVote}}}, {new: true}, 
+    function(err, data){
+        if(err) throw err;
+        submitAnswer(customVote, res, id, user)
+    })
+
+})
+
 function submitAnswer(field, res, id, user){
-  //  $push: {'voters': user}},
+  //  $push: {'voters': user}}, 
     Poll.findOneAndUpdate(
     { options: {$elemMatch: {title: field}}},
     { $inc: { 'options.$.vote': 1}, $push: {'voters': user}},
+ 
     function(err, poll){
         if(err) throw err;
-        res.redirect(`/poll/${id}`)
+        res.json({updated: poll})
     })
 }
 

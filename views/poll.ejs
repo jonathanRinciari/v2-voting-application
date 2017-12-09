@@ -5,7 +5,7 @@
       <div class="voteGrid">
         <h3>Vote Now!</h3>
         <div id="voteOptions">
-          <form method="POST" action="/poll/<%=foundPoll._id%>">
+          <form method="POST" action="/poll/<%=foundPoll._id%>?_method=PUT">
             <select name="vote">
               <option name="Yes">Yes</option>
               <option name="teseting">Testing</option>
@@ -13,6 +13,8 @@
             </select>
             <button type="submit">Submit</button>
           </form>
+          <input type="text">
+          <button id="answer">Add Your Own Answer</button>
         </div>
       </div>
       <div class="graphGrid">
@@ -23,3 +25,25 @@
   </div>
   
 <% include ./partials/pollFooter %>
+
+<script>
+var appUrl = '/poll/' + window.location.pathname.split('/')[2]
+  $('button').click(function(){
+    if($(this).attr('id') === 'answer'){
+      $.ajax({
+        type: 'POST',
+        url: appUrl,
+        data: {vote: 'Test'},
+        success: function(result){
+          if(result){
+            location.reload();
+          } else {
+            alert(result.message)
+          }
+        }
+      })
+    }
+  })
+  
+  
+</script>
