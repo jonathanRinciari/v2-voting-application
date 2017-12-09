@@ -1,0 +1,18 @@
+<% include ./partials/header %>
+<h1>This is where all of the polls will go for a user</h1>
+<p>We can also delete each poll if we want to from here</p>
+<ul>
+<% polls.forEach(function(poll){ %>
+    <li id=<%=poll._id%>><%=poll.title%></li>
+<% }) %>
+</ul>
+
+<% include ./partials/footer %> 
+
+<script>
+    $("li").click(function(){
+        var id = $(this).attr('id')
+        console.log(id)
+    })
+    
+</script>

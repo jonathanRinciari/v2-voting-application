@@ -12,7 +12,8 @@ const express = require('express'),
     passportSetup = require('./config/passport-setup'),
     poll = require('./routes/poll'),
     api = require('./routes/api'),
-    methodOverride = require('method-override');
+    methodOverride = require('method-override'),
+    myPolls = require('./routes/mypolls')
 
 require('dotenv').config();
 
@@ -61,6 +62,7 @@ app.use('/', index);
 app.use('/auth', authRoutes)
 app.use('/poll', poll);
 app.use('/api', api);
+app.use('/mypolls', myPolls)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
