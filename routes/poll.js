@@ -37,7 +37,7 @@ router.post('/create', function(req, res){
 router.get('/:id', function(req, res){
     Poll.findById(req.params.id, function(err, foundPoll){
         if(err) throw err;
-        res.render('poll', {foundPoll: foundPoll.options})
+        res.render('poll', {foundPoll: foundPoll})
     })
 })
 

@@ -1,13 +1,13 @@
 <% include ./partials/header %>
   <div class="pollContainer">
-    <h1>Poll Name</h1>
+    <h1><%=foundPoll.title%></h1>
     <div class="pollGrid">
       <div class="voteGrid">
         <h3>Vote Now!</h3>
         <div id="voteOptions">
           <form>
             <select name="vote">
-              <% foundPoll.forEach((poll) => { %>
+              <% foundPoll.options.forEach((poll) => { %>
               <option name=<%=poll.title%>><%=poll.title%></option>
               <% }) %>
             </select>
@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="graphGrid">
-        <canvas id="myChart" height="50px" width='60px'></canvas>
+        <canvas id="myChart" height="50px" width='70px'></canvas>
       </div>
     </div>
     
