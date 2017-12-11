@@ -5,7 +5,6 @@ router.get('/create', function(req, res){
     res.render('newPoll')
     Poll.find({}, function(err, polls){
         if(err) throw err;
-        console.log(polls)
     })
 })
 
@@ -17,7 +16,6 @@ router.post('/create', function(req, res){
     for(var i = 0; i < options.length; i++){
         optionsArr.push({title: options[i]})
     }
-
     var newPoll = ({
         author: author,
         title: title,
@@ -77,6 +75,16 @@ var user = req.user.username
    }
 } );
 
+})
+
+router.delete('/:id', function(req, res){
+    Poll.findByIdAndRemove(req.body.id, function(err){
+        if(err){
+            res.json({message: 'An Error Occured Deleting'})
+        } else {
+            res.json({updated: 'success'})
+        }
+    })
 })
 
 function submitAnswer(field, res, id, user){

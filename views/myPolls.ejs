@@ -1,18 +1,38 @@
 <% include ./partials/header %>
-<h1>This is where all of the polls will go for a user</h1>
-<p>We can also delete each poll if we want to from here</p>
-<ul>
-<% polls.forEach(function(poll){ %>
-    <li id=<%=poll._id%>><%=poll.title%></li>
-<% }) %>
-</ul>
-
+<div class="indexContainer">
+  <div class="userProfile">
+    <h1>Welcome Back, <%=currentUserName.username%>!</h1>
+    <p>These are all of your currently created polls</p>
+    <p>You can view each page and see the current votes by clicking on one</p>
+    <p>You can also delete a poll by clicking on the red X</p>
+  </div>
+  <ul class="indexAllPolls" id="userPolls">
+    <%polls.forEach(function(poll){ %>
+      <li><a href="/poll/<%=poll._id%>"><%=poll.title%><span id=<%=poll._id%>>X</span></a></li>
+      
+    <% }) %>
+  </ul>   
+</div>
 <% include ./partials/footer %> 
 
 <script>
-    $("li").click(function(){
-        var id = $(this).attr('id')
-        console.log(id)
+    $('span').click(function(e){
+      if(confirm('Are You sure you want to delete this poll?')){
+      var id = $(this).attr('id');
+      $.ajax({
+        type: 'DELETE',
+        url: `/poll/${id}`,
+        data: {id},
+        success: function(result){
+          if(result.updated){
+            alert(result.updated)
+            window.location.href="/mypolls"; 
+          } else {
+            alert(result.message)
+          }
+        }
+      })
+      }
     })
     
 </script>

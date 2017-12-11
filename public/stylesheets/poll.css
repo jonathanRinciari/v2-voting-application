@@ -63,3 +63,30 @@ select {
     width: 120px;
     text-align: center;
 }
+
+.userProfile {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#userPolls {
+    padding-top: 30px;
+}
+
+#userPolls a {
+    font-size: 20px;
+}
+.userProfile h1{
+    font-size: 32px;
+}
+
+#userPolls span {
+    margin-left: 50px;
+}
+
+#userPolls span:hover {
+    color: red;
+}

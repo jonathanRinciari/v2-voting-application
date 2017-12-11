@@ -7,6 +7,3 @@ $('input:checkbox').click(function() {
         console.log(vote)
     });
     
-$('button').click(function(){
-  
-})

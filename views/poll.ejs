@@ -5,6 +5,7 @@
       <div class="voteGrid">
         <h3>Vote Now!</h3>
         <div id="voteOptions">
+          <% if(currentUserName) {%>
           <form>
             <select name="vote">
               <% foundPoll.options.forEach((poll) => { %>
@@ -15,6 +16,16 @@
           </form>
           <input type="text">
           <button id="answer">Add Your Own Answer</button>
+        
+        <% } else { %>
+        <div>
+          <h1>Login To Vote!</h1>
+          <p>
+            We want to make ensure that only validated users are able to
+            take part in all of the great polls we offer!
+          </p>
+        </div>
+        <% } %>
         </div>
       </div>
       <div class="graphGrid">
