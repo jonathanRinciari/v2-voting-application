@@ -1,18 +1,21 @@
 const router = require('express').Router();
-const Poll = require('../models/polls')
+const Poll = require('../models/polls');
+const middleware = require('../middleware')
 
-router.get('/create', function(req, res){
+router.get('/create', middleware.isLoggedIn,function(req, res){
     res.render('newPoll')
     Poll.find({}, function(err, polls){
         if(err) throw err;
     })
 })
 
-router.post('/create', function(req, res){
+router.post('/create', middleware.isLoggedIn, function(req, res){
+  
     var author = req.user.username
     var title = req.body.title
     var options = req.body.options.split(',')
     var optionsArr = [];
+    if(options !== '' && title !== ''){
     for(var i = 0; i < options.length; i++){
         optionsArr.push({title: options[i]})
     }
@@ -22,13 +25,14 @@ router.post('/create', function(req, res){
         options: optionsArr,
         voters: []
     })
-    
-    
-    
     Poll.create(newPoll, function(err, newlyCreated){
         if(err) throw err;
         res.redirect('/')
     })
+    } else {
+        req.flash("error", "You must include a title and options for your poll")
+        res.redirect("back")
+    }
 })
 
 
@@ -39,7 +43,7 @@ router.get('/:id', function(req, res){
     })
 })
 
-router.put('/:id', function(req, res){
+router.put('/:id', middleware.isLoggedIn, function(req, res){
     var id = req.params.id;
     var userVote = req.body.vote
     var user = req.user.username
@@ -58,7 +62,7 @@ router.put('/:id', function(req, res){
 })
 
 
-router.post('/:id', function(req, res){
+router.post('/:id', middleware.isLoggedIn,function(req, res){
 var id = req.params.id
 var customVote = req.body.vote
 var user = req.user.username
@@ -77,7 +81,7 @@ var user = req.user.username
 
 })
 
-router.delete('/:id', function(req, res){
+router.delete('/:id', middleware.isOwner,function(req, res){
     Poll.findByIdAndRemove(req.body.id, function(err){
         if(err){
             res.json({message: 'An Error Occured Deleting'})

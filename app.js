@@ -13,7 +13,8 @@ const express = require('express'),
     poll = require('./routes/poll'),
     api = require('./routes/api'),
     methodOverride = require('method-override'),
-    myPolls = require('./routes/mypolls')
+    myPolls = require('./routes/mypolls'),
+    flash = require ('connect-flash')
 
 require('dotenv').config();
 
@@ -26,6 +27,7 @@ app.use(session({
 	resave: false,
 	saveUninitialized: true
 }));
+app.use(flash());
 
 // initialize passport
 app.use(passport.initialize());
@@ -55,6 +57,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req, res, next){
   res.locals.currentUserName = req.user;
+  res.locals.error = req.flash("error");
+  res.locals.success = req.flash("success");
   next();
 })
 
