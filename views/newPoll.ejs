@@ -1,10 +1,21 @@
 <% include ./partials/header %>
-    
-<form action="/poll/create" method="POST">
-    <input placeholder="Title" name="title"></input>
-    <input placeholder="Options" name="options"></input>
-    <button type="submit"></button>
-</form>
+
+<div class="newPollContainer">
+    <h1>Create a New Poll</h1>
+    <div class="pollForm">
+        <form action="/poll/create" method="POST">
+            <label for="title">Enter a Title </label>
+            <input id="title" placeholder="Title" name="title"></input>
+            <label for="options">Enter Your Options </label>
+            <input id="options" placeholder="Options*" name="options"></input>
+             <span>*Options list seperated by comma</span>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+
+  
+
 
 
 

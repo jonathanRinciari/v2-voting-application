@@ -49,9 +49,11 @@ var appUrl = '/poll/' + window.location.pathname.split('/')[2]
         success: function(result){
           console.log(result)
           if(result.updated){
-            location.reload();
+            swal("WOOHOO! YOU VOTED!").then(() => {
+              location.reload();
+            })
           } else {
-            alert(result.message)
+            swal("Double Voter!", "You Already Voted!", "warning")
           }
         }
       })
@@ -67,11 +69,12 @@ var appUrl = '/poll/' + window.location.pathname.split('/')[2]
       data: {vote: myVote},
       success: function(result){
         if(result.updated){
-          $("input").val('')
-          location.reload();
+          swal("WOOHOO! YOU VOTED!").then(() => {
+              $("input").val('')
+              location.reload();
+            })
         } else {
-          console.log(result.message)
-          alert(result.message)
+          swal("Double Voter!", "You Already Voted!", "warning")
         }
       }
     })

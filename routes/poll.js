@@ -81,7 +81,7 @@ var user = req.user.username
 
 })
 
-router.delete('/:id', middleware.isOwner,function(req, res){
+router.delete('/:id',function(req, res){
     Poll.findByIdAndRemove(req.body.id, function(err){
         if(err){
             res.json({message: 'An Error Occured Deleting'})

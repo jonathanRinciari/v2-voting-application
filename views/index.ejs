@@ -16,9 +16,13 @@
   <div class="indexAllPolls">
     <h2>All Polls</h2>
     <ul>
+      <% if(polls.length > 0) { %>
       <% polls.forEach((poll) => { %>
         <li><a href="/poll/<%=poll._id%>"><%=poll.title%></a></li>
      <% }) %>
+     <% } else { %>
+       <p>Sorry, There Are Currently No Polls To Display</p>
+     <% } %>
     </ul>
   </div>
 </div>
