@@ -226,3 +226,8 @@ select {
 .pollVotes select {
     width: 150px;
 }
+
+.altMessage {
+    width: 300px;
+    font-size: 20px
+}

@@ -64,7 +64,7 @@ body, html {
 
 .indexAllPolls li {
   height: 50px;
-  background-color: gray;
+  background-color: lightgray;
   margin-top: 5px;
   margin-left: 10%;
   margin-right: 10%;
@@ -78,11 +78,11 @@ body, html {
 }
 
 .indexAllPolls li:hover:nth-child(odd) {
-  background-color:#E9E581;
+  background-color: #E9E581;
 }
 
 .indexAllPolls li:hover {
-  background-color:#E9E581;
+  background-color: #E9E581;
 }
 
 .indexAllPolls a {
