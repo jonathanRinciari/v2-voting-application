@@ -1,11 +1,13 @@
 <% include ./partials/header %>
   <div class="pollContainer">
-    <h1><%=foundPoll.title%></h1>
+    <h1>Title: <%=foundPoll.title%></h1>
+    <h5>Created By: <%=foundPoll.author%></h5>
     <div class="pollGrid">
       <div class="voteGrid">
-        <h3>Vote Now!</h3>
-        <div id="voteOptions">
           <% if(currentUserName) {%>
+          <div class="pollVotes">
+            <div class="accentContainer">
+            <h3>Vote Now!</h3>
           <form>
             <select name="vote">
               <% foundPoll.options.forEach((poll) => { %>
@@ -16,7 +18,8 @@
           </form>
           <input type="text">
           <button id="answer">Add Your Own Answer</button>
-        
+        </div>
+        </div>
         <% } else { %>
         <div>
           <h1>Login To Vote!</h1>
@@ -26,7 +29,7 @@
           </p>
         </div>
         <% } %>
-        </div>
+       
       </div>
       <div class="graphGrid">
         <canvas id="myChart" height="50px" width='70px'></canvas>
@@ -53,6 +56,7 @@ var appUrl = '/poll/' + window.location.pathname.split('/')[2]
               location.reload();
             })
           } else {
+            $("input").val('')
             swal("Double Voter!", "You Already Voted!", "warning")
           }
         }
@@ -75,6 +79,7 @@ var appUrl = '/poll/' + window.location.pathname.split('/')[2]
             })
         } else {
           swal("Double Voter!", "You Already Voted!", "warning")
+          
         }
       }
     })

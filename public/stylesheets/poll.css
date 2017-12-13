@@ -1,9 +1,20 @@
+/*#2B2B2B*/
+/*#DE1B1B*/
+/*#F6F6F6*/
+/*#E9E581*/
+
+
+
 .pollContainer {
     display: flex;
     flex-direction: column;
     height: 100%;
     width: 100%;
-    background-color: pink;
+    background-color:#F6F6F6;
+}
+
+.pollContainer h5 {
+    text-align: center;
 }
 
 .pollContainer h1 {
@@ -16,7 +27,6 @@
 }
 
 .voteGrid {
-    background-color: orange;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,18 +35,8 @@
 }
 
 .graphGrid {
-    background-color: blue;
     width: 60%;
     height: 100%;
-}
-
-input[type="checkbox"] {
-    border: 2px solid red;
-    background-color: red !important;
-}
-
-#test {
-    border: 1px solid red;
 }
 
 .voteGrid h3 {
@@ -44,20 +44,6 @@ input[type="checkbox"] {
     margin-bottom: 20px;
 }
 
-
-#voteOptions {    
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 175px;
-    align-content: center;
-    margin: 50px;
-    margin-top: 10px;
-}
-
-form {
-    border: 1px solid black;
-}
 
 select {
     width: 120px;
@@ -70,6 +56,7 @@ select {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+   
 }
 
 #userPolls {
@@ -79,8 +66,10 @@ select {
 }
 
 #userPolls a {
-    font-size: 20px;
+    font-size: 22px;
+    color: black;
 }
+
 .userProfile h1{
     font-size: 32px;
 }
@@ -90,6 +79,7 @@ select {
    font-size: 32px;
    padding-right: 10px;
     color: red;
+    opacity: .3;
 }
 
 
@@ -101,6 +91,7 @@ select {
 
 #userPolls span:hover {
     font-weight: bold;
+    opacity: 1;
 }
 
 .myPollsContainer {
@@ -121,7 +112,7 @@ select {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: teal;
+    background-color: #2B2B2B;
     width: 450px;
     height: 350px;
     box-shadow: 0 0 2px 1px;
@@ -134,14 +125,15 @@ select {
     justify-content: center;
     height: 300px;
     width: 400px;
-    background-color: white;
+    border-radius: 2px;
+    background-color: #F6F6F6;
 }
 
 .pollForm input {
     margin: 12px;
     padding-left: 2px;
     font-size: 20px;
-    box-shadow: 0px 0px 2px 1px;
+    box-shadow: 0px 0px 1px 1px;
     outline: none;
     border: none;
 }
@@ -149,7 +141,7 @@ select {
 
 
 .pollForm input:focus {
-    box-shadow: 0px 0px 2px 1px rgba(122, 0, 20, .6);
+    box-shadow: 0px 0px 1px 1px rgba(122, 0, 20, .6);
 }
 
 #options {
@@ -184,4 +176,53 @@ select {
 .pollForm button:active {
     background-color: darkgreen;
     box-shadow: none;
+}
+
+.pollVotes {
+    height: 400px;
+    width: 300px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #DE1B1B;
+    box-shadow: 0 0 1px 1px;
+}
+
+.pollVotes form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 150px;
+    
+}
+
+.pollVotes h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.pollVotes button {
+    margin-top: 20px;
+}
+
+.pollVotes input {
+    width: 150px;
+}
+
+.accentContainer {
+    background-color: #E9E581;
+    display: flex;
+    width: 280px;
+    height: 380px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pollVotes select {
+    width: 150px;
 }

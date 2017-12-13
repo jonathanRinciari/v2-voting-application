@@ -1,5 +1,12 @@
+/*#2B2B2B*/
+/*#DE1B1B*/
+/*#F6F6F6*/
+/*#E9E581*/
+
+
+
 .loginContainer {
-    background-color: cyan;
+    background-color: #F6F6F6;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,14 +15,15 @@
 }
 
 .login {
-    box-shadow: 0 0 3px 1px;
+    box-shadow: 0 0 3px 1px ;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    background-color: pink;
+    background-color: #2B2B2B;
     height: 400px;
     width: 400px;
+    color: #E9E581;
 }
 
 .login h1 {
@@ -39,6 +47,10 @@
 .button {
     color: white;
     background-color: gray;
-    box-shadow: -1px 3px 2px 0px rgba(0,0,0,.5);
+    box-shadow: -1px 3px 2px 0px rgba(233, 229, 129, .3);
     padding: 5px;
+}
+
+.button:focus {
+    box-shadow: none;
 }
